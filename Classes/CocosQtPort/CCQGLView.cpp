@@ -66,7 +66,7 @@ bool CCQGLView::Create()
 		_window->setMaximumSize(1920, 1080);
         _window->show();
 
-		setDesignResolutionSize(width, height, ResolutionPolicy::FIXED_HEIGHT);
+		setDesignResolutionSize(width, height, ResolutionPolicy::NO_BORDER);
 		ret = initGlew();
         CC_BREAK_IF(!ret);
 
@@ -117,7 +117,7 @@ void CCQGLView::setViewName(const char* pszViewName)
 void CCQGLView::setFrameSize(float width, float height)
 {
 	GLView::setFrameSize(width, height);
-	setDesignResolutionSize(_window->baseSize().width(), _window->baseSize().height(), ResolutionPolicy::NO_BORDER);
+	setDesignResolutionSize(width, height, ResolutionPolicy::NO_BORDER);
 	cocos2d::Director::getInstance()->setProjection(cocos2d::Director::getInstance()->getProjection());
 	glClearColor(_bgColor.r, _bgColor.g, _bgColor.b, _bgColor.a);
 }
@@ -126,9 +126,9 @@ void CCQGLView::resize()
 {
 	if (_window != nullptr)
 	{
-		float ratio = (float)(_window->baseSize().width()) / (float)(_window->baseSize().height());
-		setFrameSize(_window->height() * ratio, _window->height());
-		//setFrameSize(_window->width(), _window->height());
+		//float ratio = (float)(_window->baseSize().width()) / (float)(_window->baseSize().height());
+		//setFrameSize(_window->height() * ratio, _window->height());
+		setFrameSize(_window->width(), _window->height());
 		//setViewPortInPoints(0, 0, _window->height() * ratio, _window->height());
 	}
 }
@@ -138,7 +138,7 @@ void CCQGLView::updateWindowSize()
 	if (_window != nullptr)
 	{
 		/* resize window if window height changed */
-		if (_lastWindowHeight != _window->height())
+		//if (_lastWindowHeight != _window->height())
 		{
 			_lastWindowHeight = _window->height();
 			resize();
