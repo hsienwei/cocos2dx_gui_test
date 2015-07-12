@@ -283,4 +283,11 @@ QWidget *CCQGLView::getGLWidget()
 	return _window;
 }
 
+HWND CCQGLView::getWin32Window()
+{
+	static HWND dummyHWND = ::CreateWindowA("STATIC", "dummy", WS_DISABLED, 0, 0, 100, 100, NULL, NULL, NULL, NULL);
+	::SetWindowTextA(dummyHWND, "Dummy Window!");
+	return dummyHWND;
+}
+
 NS_CC_END

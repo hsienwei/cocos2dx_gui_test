@@ -31,6 +31,7 @@ public:
     void mouseRelease(QMouseEvent *event);
 	void wheel(QWheelEvent *event);
     QWidget * getGLWidget();
+	HWND getWin32Window();
 
 	void resize(); // auto adjust frame size according to current window size
 	void updateWindowSize();
